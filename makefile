@@ -8,11 +8,13 @@ CMAKEFLAGS :=
 
 ifeq ($(OS), Windows_NT)
 	CC := gcc
-	CFLAGS += -lgdi32
+	CFLAGS +=
+	LDFLAGS += -lgdi32
 	CMAKEFLAGS += -G "MinGW Makefiles"
 else ifeq ($(OS), Darwin)
 	CC := clang
-	CFLAGS += -framework OpenGL -framework IOKit -framework Cocoa -framework CoreVideo -framework CoreAudio
+	CFLAGS +=
+	LDFLAGS += -framework OpenGL -framework IOKit -framework Cocoa -framework CoreVideo -framework CoreAudio
 endif
 
 SRC = $(wildcard src/*.c) $(wildcard src/**/*.c) $(wildcard src/**/**/*.c) $(wildcard src/**/**/**/*.c)
