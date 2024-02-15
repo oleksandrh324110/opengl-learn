@@ -1,6 +1,6 @@
 OS := $(or $(OS), $(shell uname))
 
-CFLAGS := -std=c11 -O3 -Wall -Wextra -Wpedantic
+CFLAGS := -std=c11 -O3 -g -Wall -Wextra -Wpedantic
 CFLAGS += -Ilib/cglm/inlcude -Ilib/glad/include -Ilib/glfw/include/ -Ilib/stb
 LDFLAGS := lib/cglm/libcglm.a lib/glad/src/gl.o lib/glfw/src/libglfw3.a
 
