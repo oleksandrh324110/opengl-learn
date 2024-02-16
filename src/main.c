@@ -1,9 +1,9 @@
 #include "gfx/gfx.h"
 #include "util/util.h"
 
-void framebuffer_size_callback(GLFWwindow* window, int width, int height);
+void framebuffer_size_callback(GLFWwindow *window, int width, int height);
 
-int main() {
+int main(void) {
   glfwInit();
   glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
   glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
@@ -13,7 +13,10 @@ int main() {
   glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
 #endif
 
-  GLFWwindow* window = glfwCreateWindow(720, 480, "Mandelbrot Set", NULL, NULL);
+  GLFWmonitor *monitor = glfwGetPrimaryMonitor();
+  const GLFWvidmode *const video_mode = glfwGetVideoMode(monitor);
+
+  GLFWwindow *window = glfwCreateWindow(video_mode->width, video_mode->height, "Mandelbrot Set", monitor, NULL);
   glfwMakeContextCurrent(window);
 
   gladLoadGL(glfwGetProcAddress);
@@ -48,7 +51,7 @@ int main() {
   return 0;
 }
 
-void framebuffer_size_callback(GLFWwindow* window, int width, int height) {
+void framebuffer_size_callback(GLFWwindow *window, int width, int height) {
   UNUSED(window);
   glViewport(0, 0, width, height);
 }
