@@ -3,9 +3,13 @@
 #include "../util/util.h"
 #include "gfx.h"
 
-typedef struct {
+struct VBO {
   GLuint handle;
   GLint type;
   bool dynamic;
-} VBO;
+};
 
+struct VBO vbo_create(GLint type, bool dynamic);
+void vbo_destroy(struct VBO self);
+void vbo_bind(struct VBO self);
+void vbo_buffer(struct VBO self, void *data, size_t offset, size_t size);

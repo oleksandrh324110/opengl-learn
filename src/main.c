@@ -1,9 +1,10 @@
-#include "gfx/gfx.h"
 #include "util/util.h"
+#include "gfx/gfx.h"
+#include "gfx/vbo.h"
 
-void framebuffer_size_callback(GLFWwindow* window, int width, int height);
+void framebuffer_size_callback(GLFWwindow *window, int width, int height);
 
-int main() {
+int main(void) {
   glfwInit();
   glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
   glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
@@ -13,7 +14,7 @@ int main() {
   glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
 #endif
 
-  GLFWwindow* window = glfwCreateWindow(720, 480, "Mandelbrot Set", NULL, NULL);
+  GLFWwindow *window = glfwCreateWindow(720, 480, "test", NULL, NULL);
   glfwMakeContextCurrent(window);
 
   gladLoadGL(glfwGetProcAddress);
@@ -26,18 +27,15 @@ int main() {
      0.0f,  0.5f, 0.0f
   };
 
-  GLuint vbo;
-  glGenBuffers(1, &vbo);
-  glBindBuffer(GL_ARRAY_BUFFER, vbo);
-  glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
+  struct VBO vbo = vbo_create(GL_ARRAY_BUFFER, false);
+  vbo_bind(vbo);
+  vbo_buffer(vbo, vertices, 0, sizeof(vertices));
 
   while (!glfwWindowShouldClose(window)) {
     if (glfwGetKey(window, GLFW_KEY_Q) == GLFW_PRESS) {
       glfwSetWindowShouldClose(window, true);
     }
 
-    float color = fabs(sin(glfwGetTime()));
-    glClearColor(color, color, color, 1);
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
     glfwSwapBuffers(window);
@@ -48,7 +46,7 @@ int main() {
   return 0;
 }
 
-void framebuffer_size_callback(GLFWwindow* window, int width, int height) {
+void framebuffer_size_callback(GLFWwindow *window, int width, int height) {
   UNUSED(window);
   glViewport(0, 0, width, height);
 }
