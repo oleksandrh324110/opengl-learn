@@ -4,7 +4,7 @@
 
 void framebuffer_size_callback(GLFWwindow *window, int width, int height);
 
-int main() {
+int main(void) {
   glfwInit();
   glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
   glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
@@ -30,6 +30,7 @@ int main() {
   struct VBO vbo = vbo_create(GL_ARRAY_BUFFER, false);
   vbo_bind(vbo);
   vbo_buffer(vbo, vertices, 0, sizeof(vertices));
+
 
   while (!glfwWindowShouldClose(window)) {
     if (glfwGetKey(window, GLFW_KEY_Q) == GLFW_PRESS) {

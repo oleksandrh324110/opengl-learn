@@ -7,5 +7,6 @@
 #include <ctype.h>
 #include <string.h>
 #include <math.h>
+#include <time.h>
 
 #define UNUSED(X) ((void)X)
