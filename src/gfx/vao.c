@@ -15,5 +15,11 @@ void vao_bind(struct VAO self) {
 }
 
 void vao_attr(struct VAO self, struct VBO vbo, GLuint index, GLint size, GLenum type, GLsizei stride, size_t offset) {
-
+  UNUSED(self);
+  UNUSED(vbo);
+  UNUSED(index);
+  UNUSED(size);
+  UNUSED(type);
+  UNUSED(stride);
+  UNUSED(offset);
 }
