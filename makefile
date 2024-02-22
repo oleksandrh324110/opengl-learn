@@ -28,7 +28,7 @@ else ifeq ($(target), darwin)
 else ifeq ($(target), wsl)
 	CC := x86_64-w64-mingw32-gcc
 	CFLAGS +=
-	LDFLAGS += -lgdi32
+	LDFLAGS += -lgdi32 -mwindows
 	CMAKEFLAGS += -DCMAKE_TOOLCHAIN_FILE=./CMake/x86_64-w64-mingw32.cmake
 endif
 
