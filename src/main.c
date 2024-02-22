@@ -5,6 +5,8 @@
 void framebuffer_size_callback(GLFWwindow *window, int width, int height);
 
 int main(void) {
+  printf("Hello, World!\n");
+
   glfwInit();
   glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
   glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
@@ -16,6 +18,8 @@ int main(void) {
 
   GLFWwindow *window = glfwCreateWindow(720, 480, "test", NULL, NULL);
   glfwMakeContextCurrent(window);
+  glfwSetWindowAttrib(window, GLFW_FLOATING, GLFW_TRUE);
+  glfwSetWindowAttrib(window, GLFW_FLOATING, GLFW_FALSE);
 
   gladLoadGL(glfwGetProcAddress);
 
@@ -37,6 +41,7 @@ int main(void) {
       glfwSetWindowShouldClose(window, true);
     }
 
+    glClearColor(1, 1, 1, 1);
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
     glfwSwapBuffers(window);
