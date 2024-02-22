@@ -1,5 +1,5 @@
-.PHONY: default-target all
 default-target: all
+.PHONY: default-target
 
 ifndef target
 $(error target is NOT defined)
@@ -28,7 +28,7 @@ else ifeq ($(target), darwin)
 else ifeq ($(target), wsl)
 	CC := x86_64-w64-mingw32-gcc
 	CFLAGS +=
-	LDFLAGS += -lgdi32 -mwindows
+	LDFLAGS += -lgdi32
 	CMAKEFLAGS += -DCMAKE_TOOLCHAIN_FILE=./CMake/x86_64-w64-mingw32.cmake
 endif
 
