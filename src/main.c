@@ -18,8 +18,6 @@ int main(void) {
 
   GLFWwindow *window = glfwCreateWindow(720, 480, "test", NULL, NULL);
   glfwMakeContextCurrent(window);
-  glfwSetWindowAttrib(window, GLFW_FLOATING, GLFW_TRUE);
-  glfwSetWindowAttrib(window, GLFW_FLOATING, GLFW_FALSE);
 
   gladLoadGL(glfwGetProcAddress);
 
@@ -41,7 +39,7 @@ int main(void) {
       glfwSetWindowShouldClose(window, true);
     }
 
-    glClearColor(1, 1, 1, 1);
+    glClearColor(1, 0, 0, 1);
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
     glfwSwapBuffers(window);
