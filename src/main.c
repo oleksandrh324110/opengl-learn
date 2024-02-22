@@ -18,8 +18,6 @@ int main(void) {
 
   GLFWwindow *window = glfwCreateWindow(720, 480, "test", NULL, NULL);
   glfwMakeContextCurrent(window);
-  glfwSetWindowAttrib(window, GLFW_FLOATING, GLFW_TRUE);
-  glfwSetWindowAttrib(window, GLFW_FLOATING, GLFW_FALSE);
 
   gladLoadGL(glfwGetProcAddress);
 
