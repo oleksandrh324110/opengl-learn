@@ -5,14 +5,16 @@ ifndef target
 $(error target is NOT defined)
 endif
 
-CFLAGS = -std=c11 -O3 -g -Wall -Wextra -Wpedantic
+CFLAGS = -std=c11 -O0 -Wall -Wextra -Wpedantic
 CFLAGS += -Ilib/cglm/include -Ilib/glad/include -Ilib/glfw/include -Ilib/stb
 LDFLAGS = lib/cglm/libcglm.a lib/glad/src/gl.o lib/glfw/src/libglfw3.a
+
+CMAKEFLAGS =
 
 ifeq ($(target), linux)
 	CC = gcc
 	CFLAGS +=
-	LDFLAGS +=
+	LDFLAGS += -lm
 	CMAKEFLAGS +=
 else ifeq ($(target), windows)
 	CC = gcc
@@ -27,6 +29,7 @@ else ifeq ($(target), wsl)
 	CC = x86_64-w64-mingw32-gcc
 	CFLAGS +=
 	LDFLAGS += -lgdi32
+	CMAKEFLAGS += -DCMAKE_TOOLCHAIN_FILE=./CMake/x86_64-w64-mingw32.cmake
 endif
 
 SRC := $(wildcard src/*.c) $(wildcard src/**/*.c) $(wildcard src/**/**/*.c) $(wildcard src/**/**/**/*.c)
@@ -37,7 +40,7 @@ OBJ := $(SRC:.c=.o)
 all: compile link run
 
 lib:
-	cd lib/glfw && cmake . -DCMAKE_TOOLCHAIN_FILE=./CMake/x86_64-w64-mingw32.cmake && make
+	cd lib/glfw && cmake . $(CMAKEFLAGS) && make
 	cd lib/cglm && cmake . -DCGLM_STATIC=ON && make
 	cd lib/glad && $(CC) -c src/gl.c -o src/gl.o -Iinclude
 

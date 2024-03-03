@@ -1,6 +1,7 @@
 #include "util/util.h"
 #include "gfx/gfx.h"
 #include "gfx/vbo.h"
+#include "gfx/vao.h"
 
 void framebuffer_size_callback(GLFWwindow *window, int width, int height);
 
@@ -31,13 +32,15 @@ int main(void) {
   vbo_bind(vbo);
   vbo_buffer(vbo, vertices, 0, sizeof(vertices));
 
+  struct VAO vao = vao_create();
+  vao_attr(vao, vbo, 0, 3, GL_FLOAT, 3 * sizeof(float), 0);
 
   while (!glfwWindowShouldClose(window)) {
     if (glfwGetKey(window, GLFW_KEY_Q) == GLFW_PRESS) {
       glfwSetWindowShouldClose(window, true);
     }
 
-    glClearColor(1, 0, 0, 1);
+    glClearColor(1, 1, 1, 1);
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
     glfwSwapBuffers(window);
