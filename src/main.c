@@ -52,6 +52,5 @@ int main(void) {
 }
 
 void framebuffer_size_callback(GLFWwindow *window, int width, int height) {
-  UNUSED(window);
   glViewport(0, 0, width, height);
 }
