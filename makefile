@@ -7,14 +7,14 @@ endif
 
 CFLAGS = -std=c11 -O0 -Wall -Wextra -Wpedantic -Wno-unused-parameter
 CFLAGS += -Ilib/cglm/include -Ilib/glad/include -Ilib/glfw/include -Ilib/stb
-LDFLAGS = lib/cglm/libcglm.a lib/glad/src/gl.o lib/glfw/src/libglfw3.a
+LDFLAGS = lib/cglm/libcglm.a lib/glad/src/gl.o lib/glfw/src/libglfw3.a -lm
 
 CMAKEFLAGS =q
 
 ifeq ($(target), linux)
 	CC = gcc
 	CFLAGS +=
-	LDFLAGS += -lm
+	LDFLAGS +=
 	CMAKEFLAGS +=
 else ifeq ($(target), windows)
 	CC = gcc
